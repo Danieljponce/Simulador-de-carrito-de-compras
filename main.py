@@ -1,12 +1,12 @@
 WAREHOUSE = [
     {
-        "code":"A001": ,
-        "Producto": "Pan",
-        "Precio": 1.50
+        "code" : "A001" ,
+        "name": "Pan",
+        "price": 1.50
     },
-    {   "code": "B203"
-        "Producto": "Leche",
-        "Precio": 3.80
+    {   "code": "B203",
+        "name" : "Leche",
+        "price": 3.80
     }
 ] 
 
@@ -22,13 +22,14 @@ def show_menu():
     7. salir """)
 
 def show_catalog() :
+    print (f"Codigo | Producto | Precio")
+    for product in WAREHOUSE: 
+        print (f"Codigo: {product["code"]}  | Producto: | {product["name"]} | Precio: s/{product["price"]}")
 
-    for Producto in HAREHOUSE: 
-    pr4nMf"COdigo: (code) I Producto: (name} Precio: 
 
+#show_catalog
 
-show_menu( ) 
-
+show_catalog()
 
 
     
