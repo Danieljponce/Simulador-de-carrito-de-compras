@@ -62,8 +62,38 @@ def add_product():
         print(f"\n Se agregaron {quantity} unidad(es) de {WAREHOUSE[code]['name']} al carrito")
         return
 
+def remove_product():
+    if not SHOPPING_CAR:
+        print("\nEl carrito está vacío")
+        return
+    
+    print("\nProductos en carrito:")
+    for code, quantity in SHOPPING_CAR.items():
+        print(f"- {code}: {WAREHOUSE[code]['name']} (x{quantity})")
+    
+    code = input("\nIngrese código del producto a eliminar: ").upper()
+    if code not in SHOPPING_CAR:
+        print("Error: El producto no está en el carrito")
+        return
+    
+    try:
+        quantity = int(input(f"Cantidad a eliminar (actual: {SHOPPING_CAR[code]}): "))
+        if quantity <= 0 or quantity > SHOPPING_CAR[code]:
+            print("Error: Cantidad inválida")
+            return
+    except:
+        print("Error: Debe ingresar un número válido")
+        return
+    
+    SHOPPING_CAR[code] -= quantity
+    if SHOPPING_CAR[code] == 0:
+        del SHOPPING_CAR[code]
+    
+    print(f"\n Se eliminaron {quantity} unidad(es) del producto")
+
 
 clear_console()
 show_menu()
 show_catalog()
 add_product ()
+remove_product()
