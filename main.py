@@ -35,6 +35,7 @@ def show_catalog():
 
 
 def add_product():
+    show_catalog()
     while True:
         code = input("\nIngrese el código del producto (o '0' para cancelar): ").upper()
         if code == "0":
@@ -114,13 +115,50 @@ def show_cart():
     print(f"TOTAL: S/{total:2}")
 
 
+def checkout():
+    if not SHOPPING_CAR:
+        
+        print("\nError: No hay productos en el carrito")
+        print("Gracias por tu compra 🧾")
+        return
+    
+    
+    total = sum(WAREHOUSE[code]['price'] * quantity for code, quantity in SHOPPING_CAR.items())
+    print(f"\n Total a pagar: S/{total:2}")
+    
+    # Simulación de pago
+    input("\nPresione Enter para confirmar la compra...")
+    print("\nCompra realizada con éxito! Gracias por su pedido")
+    clear_cart()
 
-clear_console()
-show_menu()
-show_catalog()
-add_product ()
-show_cart()
 
 
+
+# Programa principal
+while True:
+    clear_console()
+    show_menu()
+    
+    option = input("\nSeleccione una opción (1-7): ")
+    
+    if option == "1":
+        show_catalog()
+    elif option == "2":
+        add_product()
+    elif option == "3":
+        remove_product()
+    elif option == "4":
+        clear_cart()
+    elif option == "5":
+        show_cart()
+    elif option == "6":
+        checkout()
+    elif option == "7":
+        print("\n¡Hasta pronto 👋!")
+        break
+    else:
+        print("\nError: Opción no válida")
+    
+    input("\nPresione Enter para continuar...")
 
 
