@@ -92,8 +92,19 @@ def remove_product():
     print(f"\n Se eliminaron {quantity} unidad(es) del producto")
 
 
+
+def clear_cart():
+    SHOPPING_CAR.clear()
+    print("\n Carrito vaciado correctamente")
+
+
+
 clear_console()
 show_menu()
 show_catalog()
 add_product ()
+clear_cart ()
 remove_product()
+
+
+
