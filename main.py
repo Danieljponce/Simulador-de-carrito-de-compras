@@ -97,14 +97,30 @@ def clear_cart():
     SHOPPING_CAR.clear()
     print("\n Carrito vaciado correctamente")
 
+def show_cart():
+    if not SHOPPING_CAR:
+        print("\nEl carrito está vacío")
+        return
+    
+    total = 0.0
+
+    print("CONTENIDO DEL CARRITO")
+    print("-"*40)
+    for code, quantity in SHOPPING_CAR.items():
+        product = WAREHOUSE[code]
+        subtotal = product['price'] * quantity
+        print(f"{product['name']:8} x{quantity:2} | S/{subtotal:2}")
+        total += subtotal
+    print(f"TOTAL: S/{total:2}")
+
 
 
 clear_console()
 show_menu()
 show_catalog()
 add_product ()
-clear_cart ()
-remove_product()
+show_cart()
+
 
 
 
