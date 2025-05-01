@@ -34,6 +34,36 @@ def show_catalog():
     print("-"*40)
 
 
+def add_product():
+    while True:
+        code = input("\nIngrese el código del producto (o '0' para cancelar): ").upper()
+        if code == "0":
+            return
+        
+        if code not in WAREHOUSE:
+            print("Error: Código no existe. Intente nuevamente")
+            continue
+        
+        try:
+            quantity = int(input(f"Ingrese cantidad para {WAREHOUSE[code]['name']}: "))
+            if quantity <= 0:
+                print("Error: La cantidad debe ser mayor a 0")
+                continue
+        except:
+            print("Error: Debe ingresar un número válido")
+            continue
+        
+        # Agregar al carrito
+        if code in SHOPPING_CAR:
+            SHOPPING_CAR[code] += quantity
+        else:
+            SHOPPING_CAR[code] = quantity
+        
+        print(f"\n Se agregaron {quantity} unidad(es) de {WAREHOUSE[code]['name']} al carrito")
+        return
+
+
 clear_console()
 show_menu()
 show_catalog()
+add_product ()
